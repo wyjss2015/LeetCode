@@ -1,0 +1,25 @@
+char* longestPalindrome(char* s) {
+    char *p,*q,*i,*j,*k,*maxString,*maxp,*maxq;
+    int max=0;
+    int r;
+    maxString = (char*)malloc(sizeof(char)*1001);
+    for(p=s;*p!='\0';p++){
+        for(q=p+max;*q!='\0'&&q-s<strlen(s);q++){
+            if(*q!=*p)continue;
+            i=p;
+            j=q;
+            while(i<=j && *i==*j){
+                    ++i;
+                    --j;
+            }
+            if(i>j && q-p+1>max){
+                maxp=p;
+                maxq=q;
+                max=q-p+1;
+            }
+        }
+        if(max==q-p)break;
+    }
+    for(k=maxp,r=0;k<=maxq;++k,++r)maxString[r]=*k;
+    return maxString;
+}

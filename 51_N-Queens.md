@@ -27,6 +27,7 @@ There exist two distinct solutions to the 4-queens puzzle:
 
 ##Solution 1 (6ms)
 ```
+class Solution {
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> res;
@@ -46,6 +47,15 @@ public:
                 temp[row][i] = '.';
             }
         }
+    }
+    bool isvalid(vector<string> &temp, int row, int column, int n){
+        for(int i=row;i>=0;--i)
+            if(temp[i][column]=='Q') return false;
+        for(int i=row-1,j=column+1;i>=0&&j<n;--i,++j)
+            if(temp[i][j]=='Q') return false;
+        for(int i=row-1,j=column-1;i>=0&&j>=0;--i,--j)
+            if(temp[i][j]=='Q') return false;
+        return true;
     }
 };
 ```
